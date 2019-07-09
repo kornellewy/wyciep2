@@ -13,37 +13,6 @@ from docx.shared import Pt
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from pathlib import Path
 
-# anvil control things
-path = Path("C:/Users/KORNEL/Dropbox/iloraz_inteligecji/anvil/app_menager/datafile.txt")
-
-ilosc_otowrzen =0
-
-def read_data():
-	data = []
-	with open(path, "w") as file:
-		l_list =[]
-		for line in file:
-			l_list = line.split(',')
-			l_list[2] = int(l_list[2])
-			ilosc_otowrzen = l_list[2]
-			l_list[3] = bool(l_list[3])
-			data.append(l_list)
-	print(data)
-	return data
-
-@anvil.server.callable
-def open_page():
-	read_data()
-	ilosc_otowrzen = ilosc_otowrzen+1
-
-@anvil.server.callable
-def save_data():
-    # - nazwa, - link, - ilosc_otowrzen, - online ? 
-    data = ["bad_img_gen", "https://alive-stark-monitor-lizard.anvil.app", ilosc_otowrzen, True]
-    with open(path, "a") as file:
-        file.write("\n".join(data))
-
-
 #twozenie wykresów 
 @anvil.server.callable
 def graphing1(tablica1, wariant):
@@ -427,5 +396,5 @@ def get_docx(imie, nazwisko, numer_warantu, tablica1, tablica2):
 	media_object = anvil.media.from_file('wordy zrobione/%s.docx' %(numer_warantu))
 	return media_object
 
-anvil.server.connect("CB764FNRJMZNDJ7U7SCAONEN-USY6TEKK3MEQSUMU")
+anvil.server.connect("")
 anvil.server.wait_forever()
