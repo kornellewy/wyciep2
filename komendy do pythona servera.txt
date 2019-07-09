@@ -1,0 +1,5 @@
+export PATH=~/anaconda3/bin:$PATH
+
+source activate anvil_wyciep2
+
+python serwer.py
